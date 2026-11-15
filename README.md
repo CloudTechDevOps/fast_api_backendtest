@@ -160,3 +160,21 @@ curl -X DELETE http://127.0.0.1:8000/users/1
 - `conn.commit()` saves INSERT, UPDATE, and DELETE changes.
 - If a request fails, check the API terminal output and RDS connectivity/security-group settings.
 - If you shared a real database password in a chat or source file, rotate it in RDS and update your local `.env`.
+
+# FastAPI vs Flask – Comparison
+
+| Feature | FastAPI | Flask |
+|---|---|---|
+| Import | `from fastapi import FastAPI` | `from flask import Flask` |
+| Application | `app = FastAPI()` | `app = Flask(__name__)` |
+| GET API | `@app.get()` | `@app.route(methods=["GET"])` |
+| POST API | `@app.post()` | `@app.route(methods=["POST"])` |
+| PUT API | `@app.put()` | `@app.route(methods=["PUT"])` |
+| DELETE API | `@app.delete()` | `@app.route(methods=["DELETE"])` |
+| Request data | Pydantic models | `request.get_json()` |
+| Response | Automatic JSON conversion | `jsonify()` |
+| Validation | Automatic with Pydantic | Manual or Pydantic |
+| Error handling | `HTTPException` | `jsonify()` with status codes |
+| API documentation | Automatic Swagger UI (`/docs`) | Not built in |
+| Async support | Built-in | Supported, with limitations |
+
